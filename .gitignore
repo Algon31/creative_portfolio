@@ -7,6 +7,12 @@ node_modules/
 dist/
 build/
 
+# AI Coding Agent harnesses, skills, and configuration
+.agent/
+.claude/
+.gemini/
+.impeccable/
+
 # Local environment and secret files
 .env
 .env.local
@@ -29,10 +35,3 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
-
-# Impeccable local artifacts
-.impeccable/config.local.json
-.impeccable/mocks/
-.impeccable/build/
-.impeccable/review/
-.claude/settings.local.json
