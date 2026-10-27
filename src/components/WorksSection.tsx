@@ -87,6 +87,7 @@ export const WorksSection: React.FC = () => {
       aria-label="Selected creative works"
       className="relative min-h-screen w-full px-6 sm:px-12 md:pl-28 lg:pl-36 md:pr-16 lg:pr-24 py-28"
     >
+      <span id="projects" className="absolute -top-20" aria-hidden="true" />
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16">
         <div className="flex items-center gap-3 mb-4">
@@ -161,7 +162,7 @@ export const WorksSection: React.FC = () => {
                       <Play className="w-8 h-8 text-dark fill-dark ml-1" />
                     </div>
                     {/* Film timecode indicators */}
-                    <div className="absolute bottom-2 right-3 font-mono text-[10px] text-dark/60 tracking-wider">
+                    <div className="absolute bottom-2 right-3 font-mono text-xs text-dark/60 tracking-wider">
                       00:04:18:24
                     </div>
                   </div>
@@ -204,7 +205,7 @@ export const WorksSection: React.FC = () => {
                 )}
 
                 {/* Aspect Badge */}
-                <div className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-light/90 text-dark text-[10px] font-sans font-semibold border border-dark/10">
+                <div className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-light/90 text-dark text-xs font-sans font-semibold border border-dark/10">
                   {project.geometricTag}
                 </div>
               </div>

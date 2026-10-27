@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Home, Film, Sparkles, User, Mail } from 'lucide-react';
+import React from 'react';
+import { Home, User, FolderKanban, Mail } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -9,38 +9,16 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: 'hero', label: 'Home', icon: Home },
-  { id: 'works', label: 'Works', icon: Film },
-  { id: 'disciplines', label: 'Craft', icon: Sparkles },
   { id: 'about', label: 'About', icon: User },
+  { id: 'works', label: 'Projects', icon: FolderKanban },
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
-export const Navigation: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('hero');
+interface NavigationProps {
+  activeSection: string;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      for (const item of navItems) {
-        const element = document.getElementById(item.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const top = rect.top + scrollY;
-          if (scrollY >= top - windowHeight * 0.4 && scrollY < top + rect.height - windowHeight * 0.4) {
-            setActiveSection(item.id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+export const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -50,73 +28,74 @@ export const Navigation: React.FC = () => {
 
   return (
     <>
-      {/* Desktop & Tablet: Floating Vertical Navigation Bar on the Left */}
+      {/* Desktop & Tablet: Floating Vertical Rectangular Panel along Left Viewport */}
       <nav
         aria-label="Primary navigation"
-        className="hidden md:flex fixed left-5 lg:left-8 top-[52%] -translate-y-1/2 z-40 flex-col items-center justify-between w-14 lg:w-16 h-[40vh] min-h-[290px] max-h-[380px] py-4 bg-light text-dark rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.18)] border border-dark/10 transition-all duration-300 backdrop-blur-sm"
+        className="hidden md:flex fixed left-5 lg:left-8 top-1/2 -translate-y-1/2 z-40 flex-col justify-between w-44 lg:w-48 p-3.5 bg-light text-dark rounded-2xl lg:rounded-3xl shadow-[0_12px_36px_rgba(0,0,0,0.2)] border border-dark/15 backdrop-blur-md transition-all duration-300"
       >
-        {/* Top geometric accent */}
-        <div className="w-2.5 h-2.5 rounded-full bg-dark/20" aria-hidden="true" />
+        {/* Subtle geometric header accent */}
+        <div className="flex items-center justify-between px-2 pt-1 pb-2.5 mb-1 border-b border-dark/10">
+          <span className="text-xs font-mono font-bold tracking-widest text-dark/60 uppercase">
+            Navigation
+          </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-dark/40" aria-hidden="true" />
+        </div>
 
-        {/* Navigation Items */}
-        <ul className="flex flex-col items-center justify-center gap-3 lg:gap-4 my-auto w-full px-2">
+        {/* Navigation list with both Icons and Text Labels visible at all times */}
+        <ul className="flex flex-col gap-1.5 w-full">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
             return (
-              <li key={item.id} className="relative group w-full flex justify-center">
+              <li key={item.id} className="w-full">
                 <button
                   type="button"
                   onClick={() => scrollTo(item.id)}
-                  aria-label={`Scroll to ${item.label}`}
+                  aria-label={`Navigate to ${item.label}`}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`relative p-2.5 rounded-full transition-all duration-300 flex items-center justify-center ${
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-sans font-semibold text-xs lg:text-sm tracking-wide transition-all duration-200 text-left select-none ${
                     isActive
-                      ? 'bg-dark text-light scale-110 shadow-sm'
-                      : 'text-dark/70 hover:text-dark hover:bg-dark/10 hover:scale-105'
+                      ? 'bg-dark text-light shadow-sm scale-[1.02]'
+                      : 'text-dark/75 hover:text-dark hover:bg-dark/10 hover:translate-x-1'
                   }`}
                 >
-                  <Icon className="w-4 h-4 stroke-[2.2]" />
-                  {/* Subtle active indicator dot */}
-                  {isActive && (
-                    <span className="absolute -left-1.5 w-1 h-3 rounded-full bg-dark hidden lg:block" />
-                  )}
+                  <Icon className="w-4 h-4 flex-shrink-0 stroke-[2.2]" />
+                  <span className="truncate">{item.label}</span>
                 </button>
-
-                {/* Floating tooltip */}
-                <div className="absolute left-full ml-3 px-2.5 py-1 bg-dark text-light text-xs font-sans font-medium rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-md tracking-wider">
-                  {item.label}
-                </div>
               </li>
             );
           })}
         </ul>
 
-        {/* Bottom geometric square accent */}
-        <div className="w-2.5 h-2.5 rounded-sm bg-dark/20" aria-hidden="true" />
+        {/* Subtle geometric footer stamp */}
+        <div className="flex items-center justify-between px-2 pt-2.5 mt-2 border-t border-dark/10 text-xs font-mono text-dark/40">
+          <span>PORTFOLIO</span>
+          <span className="w-1.5 h-1.5 rounded-sm bg-dark/25" />
+        </div>
       </nav>
 
-      {/* Mobile: Floating Horizontal Navigation Pill at Bottom */}
+      {/* Mobile: Floating Horizontal Navigation Panel at Bottom */}
       <nav
         aria-label="Mobile navigation"
-        className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-4 py-2.5 bg-light text-dark rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.25)] border border-dark/15 backdrop-blur-md"
+        className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex items-center justify-around gap-1 p-2 bg-light text-dark rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border border-dark/15 backdrop-blur-md w-[92vw] max-w-sm"
       >
-        <ul className="flex items-center gap-2">
+        <ul className="flex items-center justify-between w-full">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
             return (
-              <li key={item.id}>
+              <li key={item.id} className="flex-1">
                 <button
                   type="button"
                   onClick={() => scrollTo(item.id)}
-                  aria-label={`Scroll to ${item.label}`}
+                  aria-label={`Navigate to ${item.label}`}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`p-2 rounded-full transition-all duration-200 flex items-center justify-center ${
-                    isActive ? 'bg-dark text-light scale-105' : 'text-dark/70 hover:text-dark'
+                  className={`w-full flex items-center justify-center gap-1.5 py-2 px-1 rounded-xl font-sans font-semibold text-xs transition-all duration-200 ${
+                    isActive ? 'bg-dark text-light shadow-sm' : 'text-dark/75 hover:text-dark'
                   }`}
                 >
-                  <Icon className="w-4 h-4 stroke-[2.2]" />
+                  <Icon className="w-3.5 h-3.5 stroke-[2.2]" />
+                  <span className="text-xs font-medium">{item.label}</span>
                 </button>
               </li>
             );

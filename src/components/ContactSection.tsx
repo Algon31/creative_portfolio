@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
+import { profileConfig } from '../config/profile.ts';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const email = 'ravibhuvan.studio@gmail.com';
+  const email = profileConfig.links.email;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -12,10 +13,10 @@ export const ContactSection: React.FC = () => {
   };
 
   const links = [
-    { name: 'X / Twitter', url: 'https://twitter.com' },
-    { name: 'Vimeo / Video Reel', url: 'https://vimeo.com' },
-    { name: 'GitHub', url: 'https://github.com' },
-    { name: 'LinkedIn', url: 'https://linkedin.com' },
+    { name: 'GitHub', url: profileConfig.links.github },
+    { name: 'LinkedIn', url: profileConfig.links.linkedin },
+    { name: 'Instagram', url: profileConfig.links.instagram },
+    { name: 'Résumé / CV', url: profileConfig.links.resume },
   ];
 
   return (

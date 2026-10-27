@@ -92,7 +92,7 @@ export const DisciplinesSection: React.FC = () => {
                   <div className="w-12 h-12 rounded-2xl bg-dark text-light flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                     <Icon className="w-5 h-5 stroke-[2.2]" />
                   </div>
-                  <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-dark/5 text-dark/65">
+                  <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-dark/5 text-dark/65">
                     0{idx + 1}
                   </span>
                 </div>
@@ -115,7 +115,7 @@ export const DisciplinesSection: React.FC = () => {
                   {item.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[11px] font-sans font-medium px-2.5 py-1 rounded-md bg-terracotta/15 text-dark"
+                      className="text-xs font-sans font-medium px-2.5 py-1 rounded-md bg-terracotta/15 text-dark"
                     >
                       {skill}
                     </span>
