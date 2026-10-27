@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T01:50:00Z",
+  "title": "Design System: Ravi Bhuvan Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Terracotta Ground",
+        "canonical": "#B75A48",
+        "tonalRamp": ["#D97F6E", "#C86B5A", "#B75A48", "#9E4737", "#843628"]
+      },
+      "light": {
+        "role": "neutral-light",
+        "displayName": "Light Cream / Sage",
+        "canonical": "#E8ECD6",
+        "tonalRamp": ["#FAFBF5", "#F2F5E8", "#E8ECD6", "#D5DBBD", "#C1C8A3"]
+      },
+      "dark": {
+        "role": "neutral-dark",
+        "displayName": "Deep Black",
+        "canonical": "#000000",
+        "tonalRamp": ["#333333", "#222222", "#111111", "#080808", "#000000"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Unbounded",
+        "purpose": "Hero oversized lowercase name and primary visual impact."
+      },
+      "body": {
+        "displayName": "Body Epilogue",
+        "purpose": "Paragraphs, metadata, and supporting narrative."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-apparatus",
+        "value": "0 10px 35px rgba(0,0,0,0.22)",
+        "purpose": "Elevation for floating vertical nav and top-right profile card."
+      },
+      {
+        "name": "card-ambient",
+        "value": "0 8px 30px rgba(0,0,0,0.1)",
+        "purpose": "Base card elevation on terracotta ground."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-standard",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Smooth exponential deceleration for role transitions and hover states."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Pill",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped action button with inverted hover state.",
+      "html": "<button class=\"bg-dark text-light px-5 py-2.5 rounded-full font-semibold text-sm\">Explore Works</button>",
+      "css": "button { background: #000000; color: #E8ECD6; border-radius: 9999px; transition: all 0.2s; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Constructivist Projection Room",
+    "overview": "A geometry-led creative portfolio revolving around squares, rectangles, and circles across a warm terracotta ground with high-contrast cream and black accents.",
+    "keyCharacteristics": [
+      "Strict three-color palette (#B75A48, #E8ECD6, #000000)",
+      "Floating 40% height vertical navigation bar on mid-left",
+      "Floating top-right rectangular profile card with circular avatar placeholder",
+      "Oversized lowercase hero typography with rotating animated profession"
+    ],
+    "rules": [
+      {
+        "name": "The Three-Tone Commitment Rule",
+        "body": "No arbitrary fourth colors, decorative gradients, or uncalibrated grayscale neutrals.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do maintain the strict three-color discipline (#B75A48, #E8ECD6, #000000).",
+      "Do use geometric shapes (squares, circles, rectangles) as structural components."
+    ],
+    "donts": [
+      "Don't introduce generic AI gradients (e.g. purple-to-blue).",
+      "Don't wrap everything in a single centered card."
+    ]
+  }
+}
